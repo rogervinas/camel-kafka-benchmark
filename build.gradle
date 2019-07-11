@@ -1,7 +1,6 @@
 buildscript {
     ext {
         camelVersion = '2.23.2'
-        testContainersVersion = '1.11.2'
     }
     repositories {
         mavenCentral()
@@ -31,14 +30,8 @@ dependencies {
     
     // Apache Camel
     implementation platform("org.apache.camel:camel-spring-boot-dependencies:$camelVersion")
-    implementation("org.apache.camel:camel-spring-boot-starter")
     implementation("org.apache.camel:camel-kafka")
-
-    // XChart
-    implementation("org.knowm.xchart:xchart:3.5.4")
-    
-    // Testcontainers
-    implementation("org.testcontainers:testcontainers:$testContainersVersion")
+    implementation("org.apache.camel:camel-test")
 }
 
 test {
