@@ -6,18 +6,25 @@ import java.util.Map;
 import org.apache.commons.math3.stat.descriptive.moment.Mean;
 import org.apache.commons.math3.stat.descriptive.moment.StandardDeviation;
 
-import static java.lang.String.format;
 import static java.lang.System.currentTimeMillis;
 import static java.lang.Thread.currentThread;
 
 public class MetricsService {
 
+  private final int partitions;
+  private final int consumers;
+
   private long startTime = currentTimeMillis();
-  private Map<Thread, ThreadMetrics> metrics = new HashMap<>();
+  private final Map<Thread, ThreadMetrics> metrics = new HashMap<>();
+
+  public MetricsService(int partitions, int consumers) {
+    this.partitions = partitions;
+    this.consumers = consumers;
+  }
 
   public void reset() {
-    startTime = currentTimeMillis();
-    metrics.clear();
+    this.startTime = currentTimeMillis();
+    this.metrics.clear();
   }
 
   public void inc() {
@@ -40,34 +47,7 @@ public class MetricsService {
 
     final double[] counts = metrics.values().stream().mapToDouble(m -> m.count).toArray();
 
-    return new Metrics(threadCount, totalCount, new Mean().evaluate(counts), new StandardDeviation().evaluate(counts), lastTime - startTime);
-  }
-
-  public static class Metrics {
-    public final long threadCount;
-    public final int totalCount;
-    public final double mean;
-    public final double stddev;
-    public final long duration;
-
-    public Metrics(long threadCount, int totalCount, double mean, double stddev, long duration) {
-      this.threadCount = threadCount;
-      this.totalCount = totalCount;
-      this.mean = mean;
-      this.stddev = stddev;
-      this.duration = duration;
-    }
-
-    public String toString() {
-      return format(
-          "%d threads | %d total | %f mean | %f stddev | %d millis",
-          threadCount,
-          totalCount,
-          mean,
-          stddev,
-          duration
-      );
-    }
+    return new Metrics(partitions, consumers, threadCount, totalCount, new Mean().evaluate(counts), new StandardDeviation().evaluate(counts), lastTime - startTime);
   }
 
   private static class ThreadMetrics {

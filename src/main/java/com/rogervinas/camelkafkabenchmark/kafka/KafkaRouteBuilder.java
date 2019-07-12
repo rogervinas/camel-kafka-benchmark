@@ -13,8 +13,7 @@ public class KafkaRouteBuilder extends RouteBuilder {
   private final String host;
   private final String topic;
   private final String groupId;
-  private final int consumersCount;
-  private final int consumerStreams;
+  private final int consumers;
   private final MetricsService metricsService;
 
   public KafkaRouteBuilder(
@@ -22,16 +21,14 @@ public class KafkaRouteBuilder extends RouteBuilder {
       String host,
       String topic,
       String groupId,
-      int consumersCount,
-      int consumerStreams,
+      int consumers,
       MetricsService metricsService
   ) {
     this.routeId = routeId;
     this.host = host;
     this.topic = topic;
     this.groupId = groupId;
-    this.consumersCount = consumersCount;
-    this.consumerStreams = consumerStreams;
+    this.consumers = consumers;
     this.metricsService = metricsService;
   }
 
@@ -40,8 +37,8 @@ public class KafkaRouteBuilder extends RouteBuilder {
     from(
         "kafka:" + topic + "?brokers=" + host
         + "&groupId=" + groupId
-        + "&consumersCount=" + consumersCount
-        + "&consumerStreams=" + consumerStreams
+        + "&consumersCount=" + consumers
+        + "&consumerStreams=" + consumers
         + "&autoOffsetReset=earliest"
     )
         .routeId(routeId)
