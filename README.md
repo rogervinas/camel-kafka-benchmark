@@ -11,3 +11,8 @@ Ensure docker app is started and ...
 ```
 
 Type `help` to see the available commands, and enjoy!
+
+## Some results ...
+
+![threads](img/threads.png)
+![throughput](img/throughput.png)
