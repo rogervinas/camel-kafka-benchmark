@@ -55,10 +55,11 @@ public class KafkaRouteBenchmark extends CamelTestSupport {
   }
 
   private void sendMessages() {
-    Producer<String, String> producer = KafkaProducerHelper.newProducer(HOST);
-    for (int message=0; message<numberOfMessages; message++) {
-      final int partition = message % partitions;
-      producer.send(new ProducerRecord<>(topic, partition, "key" + message, "value-" + message));
+    try (Producer<String, String> producer = KafkaProducerHelper.newProducer(HOST)) {
+      for (int message = 0; message < numberOfMessages; message++) {
+        final int partition = message % partitions;
+        producer.send(new ProducerRecord<>(topic, partition, "key" + message, "value-" + message));
+      }
     }
   }
 }
