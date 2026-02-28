@@ -11,7 +11,7 @@ buildscript {
 plugins {
     id 'idea'
     id 'java'
-    id 'org.springframework.boot' version '4.0.2'
+    id 'org.springframework.boot' version '4.0.3'
 }
 
 group 'com.rogervinas'
@@ -26,7 +26,7 @@ repositories {
 
 dependencies {
     // Spring Shell
-    implementation("org.springframework.shell:spring-shell-starter:4.0.0")
+    implementation("org.springframework.shell:spring-shell-starter:4.0.1")
 
     // Apache Camel
     implementation platform("org.apache.camel:camel-spring-boot-dependencies:$camelVersion")
@@ -38,11 +38,11 @@ dependencies {
     implementation("org.apache.commons:commons-lang3:3.20.0")
 
     // Test
-    testImplementation("org.junit.jupiter:junit-jupiter-api:6.0.2")
-    testImplementation("org.junit.jupiter:junit-jupiter-params:6.0.2")
-    testRuntime("org.junit.jupiter:junit-jupiter-engine:6.0.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:6.0.3")
+    testImplementation("org.junit.jupiter:junit-jupiter-params:6.0.3")
+    testRuntime("org.junit.jupiter:junit-jupiter-engine:6.0.3")
     testImplementation("junit:junit:4.13.2")
-    testRuntime("org.junit.vintage:junit-vintage-engine:6.0.2")
+    testRuntime("org.junit.vintage:junit-vintage-engine:6.0.3")
     testImplementation("org.assertj:assertj-core:3.27.7")
 }
 
