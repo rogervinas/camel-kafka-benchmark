@@ -11,7 +11,7 @@ buildscript {
 plugins {
     id 'idea'
     id 'java'
-    id 'org.springframework.boot' version '4.0.4'
+    id 'org.springframework.boot' version '4.0.5'
 }
 
 group 'com.rogervinas'
