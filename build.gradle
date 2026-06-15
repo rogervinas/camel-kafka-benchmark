@@ -11,7 +11,7 @@ buildscript {
 plugins {
     id 'idea'
     id 'java'
-    id 'org.springframework.boot' version '4.0.6'
+    id 'org.springframework.boot' version '4.1.0'
 }
 
 group 'com.rogervinas'
@@ -26,7 +26,7 @@ repositories {
 
 dependencies {
     // Spring Shell
-    implementation("org.springframework.shell:spring-shell-starter:4.0.2")
+    implementation("org.springframework.shell:spring-shell-starter:4.0.3")
 
     // Apache Camel
     implementation platform("org.apache.camel:camel-spring-boot-dependencies:$camelVersion")
